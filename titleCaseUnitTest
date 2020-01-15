@@ -1,6 +1,6 @@
 // testUtilities.js
 
-var expect = require('chai').expect;
+const expect = require('chai').expect;
 
 function titleCase(title) {
   let words = title.split(' ');
