@@ -1,0 +1,15 @@
+var expect = require('chai').expect;
+
+function titleCase(title) {
+  let words = title.split(' ');
+  
+  let titleCasedWords = words.map(word => word[0].toUpperCase() + word.substring(1));
+  
+  return titleCasedWords.join(' ');
+  
+}
+
+expect(titleCase('the limits of control')).to.be.a('string');
+expect(titleCase('t')).to.equal('T');
+expect(titleCase('control')).to.equal('Control');
+expect(titleCase('the limits of control')).to.equal('The Limits Of Control');
