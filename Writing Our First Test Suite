@@ -53,7 +53,7 @@ describe('checkForShip', function () {
     expect(checkForShip(player, [9, 9])).to.be.false;
   });
   
-  it('should handle checking multiple chips', function() {
+  it('should handle checking multiple ships', function() {
   
     player = {
       ships: [
