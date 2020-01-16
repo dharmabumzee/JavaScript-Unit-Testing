@@ -4,7 +4,8 @@ const expect = require('chai').expect;
 
 describe('checkForShip', function () {
   let checkForShip = require('../game_logic/ship_methods').checkForShip;
-  
+ 
+ 
   it('should correctly report no ship at a given player's coordinates', function() {
   
     player = {
@@ -18,6 +19,63 @@ describe('checkForShip', function () {
   
     expect(checkForShip(player, [9, 9])).to.be.false;
   });
+  
+  
+
+  it('should correctly report a ship located at a given coordinates', function() {
+  
+    player = {
+      ships: [
+        {
+          locations: [[0, 0]]
+          
+        }
+      ]
+    }
+  
+    expect(checkForShip(player, [0, 0])).to.be.true;
+  });
+  
+  
+  
+  it('should handle ships located at more than one coordinate', function() {
+  
+    player = {
+      ships: [
+        {
+          locations: [[0, 0], [0, 1]]
+          
+        }
+      ]
+    }
+    expect(checkForShip(player, [0, 0])).to.be.true;
+    expect(checkForShip(player, [0, 1])).to.be.true;
+    expect(checkForShip(player, [9, 9])).to.be.false;
+  });
+  
+  it('should handle checking multiple chips', function() {
+  
+    player = {
+      ships: [
+        {
+          locations: [[0, 0], [0, 1]]
+        },
+        {
+          locations: [[1, 0], [1, 1]]
+        },
+        {
+          locations: [[2, 0], [2, 1], [2, 2], [2, 3]]
+        }
+      ]
+    }
+    expect(checkForShip(player, [0, 0])).to.be.true;
+    expect(checkForShip(player, [0, 1])).to.be.true;
+    expect(checkForShip(player, [1, 0])).to.be.true;
+    expect(checkForShip(player, [1, 1])).to.be.true;
+    expect(checkForShip(player, [2, 3])).to.be.true;
+    expect(checkForShip(player, [9, 9])).to.be.false;
+  });
+  
 });
 
 
@@ -34,11 +92,12 @@ function checkForShip (player, coordinates) {
       return (actualCoordinate[0] === coordinates[0)] && (actualCoordinate[1] === coordinates[1]);
     })[0];
     
-    if (!shipPresent) {
-      return false;
-    }
+    if (shipPresent) {
+      return true;
+    } 
   }
-
+  
+  return false;
 }
 
 module.exports.checkForShip = checkForShip;
