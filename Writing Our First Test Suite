@@ -373,3 +373,14 @@ module.exports = {
   validateLocations: validateLocations,
   validateLocation: validateLocation
 };
+
+
+// game_test.js
+
+const expect = require('chai').expect;
+
+describe('GAME INSTANCE FUNCTION', function () {
+  describe('checkGameStatus', function () {
+    it('should tell me when the game is over');
+  });
+}):
