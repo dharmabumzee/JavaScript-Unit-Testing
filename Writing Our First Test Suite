@@ -385,12 +385,12 @@ describe('GAME INSTANCE FUNCTION', function () {
     it('should tell me when the game is over', function() {
       let players = [
         {
-					ships: [
-						{
-							locations: [[0, 0]],
-							damage: [[0, 0]]
-						}
-					]
+	  ships: [
+	{
+	  locations: [[0, 0]],
+	  damage: [[0, 0]]
+	}
+	  ]
         }
       ];
       let actual = checkGameStatus(players);
@@ -398,3 +398,11 @@ describe('GAME INSTANCE FUNCTION', function () {
     });
   });
 }):
+
+// game_instance.js
+
+function checkGameStatus(players) {
+	
+}
+
+module.exports.checkGameStatus = checkGameStatus;
