@@ -397,12 +397,45 @@ describe('GAME INSTANCE FUNCTION', function () {
       expect(actual).to.be.false;
     });
   });
+  
+  describe('take turn', function() {
+  	let takeTurn = require('../game_logic/game_instance').takeTurn;
+	let guess, player;
+	
+	beforeEach(function () {
+	  guess = function() { return [0, 0]; };
+	  player = {
+	    ships: [
+	      {
+	      	locations: [[0, 0]],
+		damage:
+	      }
+	    ]
+	  }  
+	});
+	
+	it('should return false if the game ends', function() {
+	  let actual = takeTurn(player, guess);
+	  expect(actual).to.be.false;
+	}); 
+  });
 }):
 
 // game_instance.js
 
+let fire = require('./ship_methods.js).fire;
+
 function checkGameStatus(players) {
-	
+  return false;
+}
+
+function takeTurn(opposingPlayer, guessFunction) {
+  let coordinates = guessFunction();
+  fire(opposingPlayer, coordinates);
+  let gameOver = checkGameStatus();
+  
+  return gameOver;
 }
 
 module.exports.checkGameStatus = checkGameStatus;
+module.exports.takeTurn = takeTurn;
